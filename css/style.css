@@ -1,0 +1,17 @@
+@import "tailwindcss";
+
+@theme{
+    --color-primary: oklch(0.277 0 89.876);
+    --color-primary2: oklch(0.893 0.056 90.328);
+    --color-primary3: oklch(0.575 0.066 198.151);
+    --color-primary4: oklch(0.645 0.095 144.807);
+    --color-primary5: oklch(0.548 0.204 28.279);
+    --color-primary6: oklch(0.725 0.143 77.608);
+
+    /* Serif fonts */
+    --font-garamond: "EB Garamond", serif;
+    --font-merriweather: "Merriweather", serif;
+
+    /* Font fallback */
+    --font-sans: "Merriweather Sans", system-ui, sans-serif;
+}
