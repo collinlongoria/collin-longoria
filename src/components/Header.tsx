@@ -1,18 +1,21 @@
-import { Link } from 'react-router-dom'
+import { Link } from "react-router-dom";
 
 export default function Header() {
     return (
-        <header className={"w-full"}>
-            <div className={"w-full h-12 bg-gray-100 flex items-center"}>
-                <div className={"mx-auto w-full max-w-screen-xl px-4 flex items-center justify-between"}>
-                    <Link to={"/"} className={"flex items-center gap-3"}>
-                        {/* Put logo image here */}
-                        <div className={"w-8 h-8 rounded-full bg-primary aria-hidden"} aria-hidden />
-                        <span className={"font-garamond text-xl tracking-wide"}>Collin Longoria</span>
-                    </Link>
-                    <div className={"text-xs text-gray-500"}>Portfolio &nbsp;•&nbsp; Engine &nbsp;•&nbsp; Graphics </div>
-                </div>
-            </div>
+        <header className="w-full bg-primary">
+            <Link to="/" aria-label="Go to homepage" className="block w-full">
+                <picture>
+                    <source media="(max-width: 640px)" srcSet="../../public/banner-mobile.png" />
+                    <img
+                        src="../../public/banner-desktop.png"
+                        alt="Collin Longoria — banner"
+                        className="block mx-auto w-full h-auto max-w-[320px] sm:max-w-[720px] select-none"
+                        draggable={false}
+                        loading="eager"
+                        decoding="async"
+                    />
+                </picture>
+            </Link>
         </header>
-    )
+    );
 }

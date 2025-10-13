@@ -1,16 +1,15 @@
 import { Routes, Route } from "react-router-dom";
-
 import NavBar from "./components/NavBar";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-
 import Home from "./pages/Home";
-import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Resume from "./pages/Resume";
 import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
 import Portfolio from "./pages/Portfolio";
+import PortfolioCategory from "./pages/PortfolioCategory";
+import PortfolioItem from "./pages/PortfolioItem";
 import NotFound from "./pages/NotFound";
 
 function App(){
@@ -18,11 +17,10 @@ function App(){
         <div className={"min-h-screen flex flex-col"}>
             <Header />
             <NavBar />
-            <main className={"flex-1"}>
+            <main className={"flex-1 bg-primary2"}>
                 <div className={"mx-auto max-w-screen-xl px-4 py-8"}>
                     <Routes>
                         <Route path={"/"} element={<Home />} />
-                        <Route path={"/about"} element={<About />} />
                         <Route path={"/contact"} element={<Contact />} />
 
                         <Route path={"/resume"} element={<Resume />} />
@@ -31,6 +29,8 @@ function App(){
                         <Route path={"/blog/:slug"} element={<BlogPost />} />
 
                         <Route path={"/portfolio"} element={<Portfolio />} />
+                        <Route path={"/portfolio/:categoryKey"} element={<PortfolioCategory />} />
+                        <Route path={"/portfolio/:categoryKey/:slug"} element={<PortfolioItem />} />
 
                         <Route path="*" element={<NotFound />} />
                     </Routes>

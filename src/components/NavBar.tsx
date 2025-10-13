@@ -2,8 +2,8 @@ import { NavLink } from 'react-router-dom'
 
 // Tailwind constants
 const base = "px-3 py-2 rounded-md text-sm font-medium transition-colors"
-const inactive = "text-gray-700 hover:text-primary"
-const active = "text-primary underline"
+const inactive = "text-primary2 hover:text-primary3"
+const active = "text-primary3 underline"
 
 function NavItem({ to, children }: { to: string; children: React.ReactNode }) {
     return (
@@ -20,7 +20,7 @@ function NavItem({ to, children }: { to: string; children: React.ReactNode }) {
 
 export default function NavBar() {
     return(
-        <nav className="bg-gray-100 p-4 flex justify-center space-x-6">
+        <nav className="bg-primary-darker p-4 flex justify-center space-x-6">
             <NavItem to='/'>Home</NavItem>
             <NavItem to="/portfolio">Portfolio</NavItem>
             <NavItem to="/resume">Resume</NavItem>
