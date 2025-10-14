@@ -1,5 +1,5 @@
 ---
-title: Test GJ Project
+title: THE CHEESE PROJECT
 date: 2023
 summary: Test GJ project!
 tags: [C++, TEST]
