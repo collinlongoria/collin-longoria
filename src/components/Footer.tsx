@@ -1,4 +1,4 @@
-import { SiGithub, SiLinkedin } from 'react-icons/si';
+import { SiGithub, SiLinkedin, SiItchdotio } from 'react-icons/si';
 import { FiMail } from "react-icons/fi";
 
 export default function Footer() {
@@ -17,6 +17,9 @@ export default function Footer() {
                     </a>
                     <a className={"p-2 rounded"} href={"https://github.com/collinlongoria"} target="_blank" rel="noreferrer" aria-label={"GitHub"}>
                         <SiGithub size={20} className={"text-primary2"} />
+                    </a>
+                    <a className={"p-2 rounded"} href={"https://collin-longoria.itch.io/"} target="_blank" rel="noreferrer" aria-label={"Itch.io"}>
+                        <SiItchdotio size={20} className={"text-primary2"} />
                     </a>
                 </div>
             </div>

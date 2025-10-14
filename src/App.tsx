@@ -8,6 +8,7 @@ import Resume from "./pages/Resume";
 import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
 import Portfolio from "./pages/Portfolio";
+import PortfolioSmart from "./pages/PortfolioRouter";
 import PortfolioCategory from "./pages/PortfolioCategory";
 import PortfolioItem from "./pages/PortfolioItem";
 import NotFound from "./pages/NotFound";
@@ -29,7 +30,7 @@ function App(){
                         <Route path={"/blog/:slug"} element={<BlogPost />} />
 
                         <Route path={"/portfolio"} element={<Portfolio />} />
-                        <Route path={"/portfolio/:categoryKey"} element={<PortfolioCategory />} />
+                        <Route path="/portfolio/:key" element={<PortfolioSmart />} />
                         <Route path={"/portfolio/:categoryKey/:slug"} element={<PortfolioItem />} />
 
                         <Route path="*" element={<NotFound />} />

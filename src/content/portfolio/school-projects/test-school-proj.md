@@ -3,7 +3,7 @@ title: Test School Project
 date: 2023
 summary: Test school project!
 tags: [C++, TEST]
-category: school-projects
+category: School Projects
 group: Sophomore Project
 ---
 

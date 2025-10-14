@@ -1,7 +1,7 @@
 export default function Contact(){
     return(
         <div className={"max-w"}>
-            <h1 className={"flex justify-center font-garamond text-primary-darker text-3xl mb-4"}>Contact Me</h1>
+            <h1 className={"flex justify-center rounded-2xl border bg-primary4 p-2 font-garamond text-primary-darker text-3xl mb-4"}>Contact Me</h1>
             <form
                 method="POST"
                 action={"https://formspree.io/f/mpwyoyzg"}
