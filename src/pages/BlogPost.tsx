@@ -8,7 +8,7 @@ export default function BlogPost() {
     const post = loadBlogPost(slug!);
 
     if (!post) return <div>Post not found.</div>;
-
+    window.scrollTo(0, 0);
     return (
         <article className="max-w-3xl mx-auto">
             <Link to="/blog" className="text-sm underline text-primary/80">← Back to blog</Link>
@@ -18,17 +18,6 @@ export default function BlogPost() {
                 <div className="text-xs text-primary/80">{new Date(post.date).toLocaleDateString()}</div>
             )}
             <TagPill tags={post.tags} className="mt-2" />
-
-            {post.coverImage && (
-                <figure className="mt-4 overflow-hidden rounded-xl border border-primary-darker/20 bg-primary4/40">
-                    <img
-                        src={post.coverImage}
-                        alt={post.title}
-                        className="w-full object-cover"
-                        loading="lazy"
-                    />
-                </figure>
-            )}
 
             <div className="mt-6">
                 <ContentRenderer content={post.content} />

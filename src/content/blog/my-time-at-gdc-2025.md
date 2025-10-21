@@ -3,10 +3,11 @@ title: My Time at GDC 2025
 date: 2025-03-32
 summary: For my first time, it went pretty well.
 tags: [Personal]
+coverImage: "/blog_gdc_2025/gdc_sign.png"
 ---
 
 <img
-    src="/gdc_sign.png"
+    src="/blog_gdc_2025/gdc_sign.png"
     alt="GDC Sign"
     class="mx-auto my-6 max-w-[min(800px,100%)] h-auto object-contain rounded-2xl border border-primary-darker bg-primary4 shadow-sm"
 />
@@ -40,7 +41,7 @@ tags: [Personal]
 </p>
 
 <img
-    src="/gdc_party.png"
+    src="/blog_gdc_2025/gdc_party.png"
     alt="Picture of a Party"
     class="mx-auto my-6 max-w-[min(800px,100%)] h-auto object-contain rounded-2xl border border-primary-darker bg-primary4 shadow-sm"
 />
