@@ -16,5 +16,6 @@
     --font-merriweather: "Merriweather", serif;
 
     /* Font fallback */
+    --font-jersey-10: "Jersey 10", sans-serif;
     --font-sans: "Merriweather Sans", system-ui, sans-serif;
 }

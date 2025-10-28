@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { loadPortfolio, loadPortfolioAtRoot } from '../lib/content'
 import TagPill from '../components/TagPill'
+import { CATEGORY_META } from "../data/categories";
 
 type Item = ReturnType<typeof loadPortfolio>[number]
 
@@ -14,7 +15,6 @@ function byDateDesc(a: Item, b: Item) {
     return (a.title || '').localeCompare(b.title || '')
 }
 
-// Horizontal row with bottom control bar
 function Row({
                  title,
                  href,
@@ -30,6 +30,11 @@ function Row({
     const [canScroll, setCanScroll] = useState(false)
     const [atStart, setAtStart] = useState(true)
     const [atEnd, setAtEnd] = useState(false)
+
+    const mask = !canScroll ? 'none'
+            : atStart ? 'linear-gradient(to right, black 0, black calc(100% - 24px), transparent 100%)'
+            : atEnd   ? 'linear-gradient(to right, transparent 0, black 24px, black 100%)'
+                : 'linear-gradient(to right, transparent 0, black 24px, black calc(100% - 24px), transparent 100%)'
 
     const updateScrollState = () => {
         const el = scrollerRef.current
@@ -57,18 +62,8 @@ function Row({
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
-    // Map vertical wheel to horizontal and prevent page scroll while interacting
     const onWheel: React.WheelEventHandler<HTMLDivElement> = (e) => {
-        const el = scrollerRef.current
-        if (!el) return
-        // If row can scroll horizontally, consume the wheel event
-        if (canScroll) {
-            // If user's scrolling primarily vertical, convert to horizontal
-            const dx = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY
-            el.scrollLeft += dx
-            e.preventDefault()
-            e.stopPropagation()
-        }
+
     }
 
     const scrollBy = (dx: number) => {
@@ -93,12 +88,13 @@ function Row({
                 ref={scrollerRef}
                 onWheel={onWheel}
                 className="flex gap-4 overflow-x-auto snap-x snap-mandatory scroll-px-4 px-1 py-1
-                   overscroll-contain
+                    overscroll-x-contain overscroll-y-auto
                    [scrollbar-width:none] [-ms-overflow-style:none]"
-                style={{ scrollBehavior: 'smooth' }}
+                style={{ scrollBehavior: 'smooth'    , WebkitMaskImage: mask,
+                    maskImage: mask,}}
             >
-                {/* Hide scrollbar on WebKit */}
-                <style>{`div::-webkit-scrollbar{display:none}`}</style>
+                {/* Hide scrollbar only for this scroller */}
+                <style>{`.hide-scrollbar::-webkit-scrollbar{display:none}`}</style>
 
                 {items.map((it) => (
                     <Link
@@ -158,17 +154,12 @@ export default function Portfolio() {
     const rootItems = useMemo(() => loadPortfolioAtRoot().slice().sort(byDateDesc), [])
     const all = useMemo(() => loadPortfolio().slice().sort(byDateDesc), [])
 
-    const categories = useMemo(
-        () =>
-            Array.from(new Set(all.map((i) => i.category).filter((c): c is string => !!c))).sort((a, b) =>
-                a.localeCompare(b)
-            ),
-        [all]
+    const categories = Object.keys(CATEGORY_META).filter(cat => all.some(i => i.category === cat)
     )
 
     return (
         <div className="space-y-10">
-            {rootItems.length > 0 && (
+
                 <section className="space-y-4">
                     <div className={"rounded-2xl border border-primary-darker p-2 bg-primary4 overflow-hidden overflow-hidden overflow-hidden shadow-sm "}>
                         <h1 className="flex justify-center font-garamond text-3xl text-primary-darker">Portfolio</h1>
@@ -176,9 +167,11 @@ export default function Portfolio() {
                             All of my development projects, new and old.
                         </p>
                     </div>
-                    <Row title="Latest" items={rootItems} buildHref={(it) => `/portfolio/${it.slug}`} />
+                    {rootItems.length > 0 && (
+                        <Row title="Latest" items={rootItems} buildHref={(it) => `/portfolio/${it.slug}`} />
+                    )}
                 </section>
-            )}
+
 
             {categories.map((cat) => {
                 const items = all.filter((i) => i.category === cat)
@@ -194,5 +187,6 @@ export default function Portfolio() {
                 )
             })}
         </div>
+
     )
 }

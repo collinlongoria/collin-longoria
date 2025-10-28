@@ -24,6 +24,7 @@ export default function Home() {
                             src="/headshot.jpeg"
                             alt="Portrait of Collin Longoria"
                             className="w-24 md:w-40 aspect-square object-cover rounded-2xl border border-primary-darker bg-primary4 shadow-sm flex-none"
+                            loading={'eager'}
                         />
                         <div className={"flex-1"}>
                             <h1 className={"font-garamond text-4xl md:text-3xl text-primary-darker mb-2"}>
