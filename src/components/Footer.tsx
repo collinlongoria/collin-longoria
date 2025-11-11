@@ -3,23 +3,24 @@ import { FiMail } from "react-icons/fi";
 
 export default function Footer() {
     return (
-        <footer className={"border-t border-primary-darker bg-primary"}>
+        <footer className={"border-t border-outline bg-primary"}>
             <div className={"mx-auto max-w-screen-xl px-4 py-8 flex flex-col sm:flex-row items-center justify-between gap-4"}>
-                <p className={"text-sm text-primary2"}>
+                <p className={"text-sm font-body text-text2"}>
                     © <span>{new Date().getFullYear()}</span> Collin Longoria - All rights reserved.
                 </p>
+
                 <div className={"flex items-center gap-4"}>
                     <a className={"p-2 rounded"} href={"mailto::collin.longoria25@gmail.com"} aria-label={"Email"}>
-                        <FiMail size={20} className={"text-primary2"} />
+                        <FiMail size={20} className={"text-text"} />
                     </a>
                     <a className={"p-2 rounded"} href={"https://www.linkedin.com/in/collin-longoria/"} target="_blank" rel="noreferrer" aria-label={"LinkedIn"}>
-                        <SiLinkedin size={20} className={"text-primary2"} />
+                        <SiLinkedin size={20} className={"text-text"} />
                     </a>
                     <a className={"p-2 rounded"} href={"https://github.com/collinlongoria"} target="_blank" rel="noreferrer" aria-label={"GitHub"}>
-                        <SiGithub size={20} className={"text-primary2"} />
+                        <SiGithub size={20} className={"text-text"} />
                     </a>
                     <a className={"p-2 rounded"} href={"https://collin-longoria.itch.io/"} target="_blank" rel="noreferrer" aria-label={"Itch.io"}>
-                        <SiItchdotio size={20} className={"text-primary2"} />
+                        <SiItchdotio size={20} className={"text-text"} />
                     </a>
                 </div>
             </div>

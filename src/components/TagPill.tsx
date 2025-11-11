@@ -13,7 +13,7 @@ export default function TagPill({ tags, className = "" }: Props) {
             {tags.map((t) => (
                 <span
                     key={t}
-                    className={"font-merriweather inline-flex items-center rounded-full border border-primary-darker bg-primary6 px-2.5 py-1 text-xs text-primary-darker"}
+                    className={"font-body inline-flex items-center rounded-full border border-outline bg-primary px-2.5 py-1 text-xs text-text2"}
                 >
                     {t}
                 </span>

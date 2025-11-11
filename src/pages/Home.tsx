@@ -1,5 +1,6 @@
 import ContactBlock from '../components/ContactBlock'
 import {SiItchdotio} from "react-icons/si";
+import { IoGameController } from "react-icons/io5";
 
 const recommendations = [
     {
@@ -18,19 +19,19 @@ export default function Home() {
     return (
         <div className={"space-y-10"}>
             <section className={"grid gap-6"}>
-                <div className={"rounded-2xl border border-primary-darker p-6 md:p-8 bg-primary4 shadow-sm"}>
+                <div className={"rounded-2xl border-2 border-outline p-6 md:p-8 bg-primary shadow-sm"}>
                     <div className={"flex items-start gap-5 md:gap-8"}>
                         <img
                             src="/headshot.jpeg"
                             alt="Portrait of Collin Longoria"
-                            className="w-24 md:w-40 aspect-square object-cover rounded-2xl border border-primary-darker bg-primary4 shadow-sm flex-none"
+                            className="w-24 md:w-40 aspect-square object-cover rounded-2xl border-2 border-outline bg-primary shadow-md flex-none"
                             loading={'eager'}
                         />
                         <div className={"flex-1"}>
-                            <h1 className={"font-garamond text-4xl md:text-3xl text-primary-darker mb-2"}>
+                            <h1 className={"font-header text-4xl md:text-3xl text-text mb-2"}>
                                 Hello, I'm Collin. Welcome to my website.
                             </h1>
-                            <p className={"font-merriweather text-primary"}>
+                            <p className={"font-body text-text"}>
                                 Here you can find information about me, my work as a programmer, and ways
                                 to reach out to me. I also have a blog where I post cool findings from my time
                                 in the programming and game dev world.
@@ -38,8 +39,8 @@ export default function Home() {
                         </div>
                     </div>
                     <div className={"mt-6"}>
-                        <h2 className={"font-garamond text-xl md:text-2xl text-primary-darker mb-2"}>About Me</h2>
-                        <p className={"font-merriweather text-sm text-primary"}>
+                        <h2 className={"font-header text-xl md:text-2xl text-text mb-2"}>About Me</h2>
+                        <p className={"font-body text-sm text-text"}>
                             &emsp;I'm a BSCS student at DigiPen Institute of Technology specializing in real-time simulation
                             and graphics programming. My work centers on engine and graphics systems, building efficient rendering and
                             compute pipeline using C++, Vulkan, OpenGL, and WebGPU.
@@ -51,8 +52,8 @@ export default function Home() {
                         </p>
                     </div>
                     <div className={"mt-6"}>
-                        <h2 className={" font-garamond text-xl md:text-2xl text-primary-darker mb-2"}>Interests</h2>
-                        <p className={"font-merriweather text-sm text-primary"}>
+                        <h2 className={" font-header text-xl md:text-2xl text-text mb-2"}>Interests</h2>
+                        <p className={"font-body text-sm text-text"}>
                             &emsp;Outside of development, I'm super interested in history, and I play a lot of strategy games. Some of my
                             favorite video games are <i>Sid Meier's Civilization</i> and the <i>Europa Universalis</i> series. These games feature
                             complex systems that fascinate me and inspire my own design work.
@@ -61,20 +62,24 @@ export default function Home() {
                 </div>
             </section>
 
-            <section className={"flex justify-center"}>
-                <a className={"inline-flex items-center gap-2 px-3 py-2 rounded-md border bg-primary/10 hover:bg-primary/20 text-primary"} href={"https://collin-longoria.itch.io/"} target="_blank" rel="noreferrer" aria-label={"Itch.io"}>
-                    <SiItchdotio size={48} className={"text-primary"} />
+            <section className={"flex justify-center gap-6 flex-wrap"}>
+                <a className={"btn-glow inline-flex font-body items-center gap-2 px-3 py-2 rounded-md border-2 border-outline bg-primary hover:bg-outline text-text"} href={"https://collin-longoria.itch.io/"} target="_blank" rel="noreferrer" aria-label={"Itch.io"}>
+                    <SiItchdotio size={48} className={"text-text"} />
                     <p>Check out my games on itch.io</p>
+                </a>
+                <a className={"btn-glow inline-flex font-body items-center gap-2 px-3 py-2 rounded-md border-2 border-outline bg-primary hover:bg-outline text-text"} href={"https://games.digipen.edu/games/elementokens"} target="_blank" rel="noreferrer" aria-label={"Itch.io"}>
+                    <IoGameController size={48} className={"text-text"} />
+                    <p>Elementokens out now!</p>
                 </a>
             </section>
 
             <section>
-                <h2 className={"flex w-full justify-center text-center font-garamond text-2xl mb-4"}>Recommendations</h2>
+                <h2 className={"flex w-full justify-center text-center font-garamond text-2xl mb-4 text-text"}>Recommendations</h2>
                 <ul className="grid md:grid-cols-2 gap-4">
                     {recommendations.map((r) => (
-                        <li key={r.name} className="rounded-2xl border border-primary-darker p-8 bg-primary3 shadow-sm">
-                            <blockquote className="text-primary">“{r.quote}”</blockquote>
-                            <div className="mt-3 text-sm text-primary">{r.name} — {r.role}</div>
+                        <li key={r.name} className="rounded-2xl border-2 border-outline p-8 bg-primary shadow-sm">
+                            <blockquote className="text-text">“{r.quote}”</blockquote>
+                            <div className="mt-3 text-sm text-text">{r.name} — {r.role}</div>
                         </li>
                     ))}
                 </ul>

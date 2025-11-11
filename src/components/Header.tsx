@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 export default function Header() {
     return (
-        <header className="w-full bg-[url('/banner-tile.png')] bg-repeat-x bg-top">
+        <header className="w-full bg-primary bg-top">
             <Link to="/" aria-label="Go to homepage" className="block w-full">
                 <picture>
                     <source media="(max-width: 640px)" srcSet="/banner-mobile.png" />

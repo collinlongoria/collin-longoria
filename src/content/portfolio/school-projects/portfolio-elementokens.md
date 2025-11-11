@@ -15,7 +15,7 @@ class="mx-auto"
 />
 
 <section>
-<h2 class="mt-2 mb-2 font-jersey-10 text-7xl">
+<h2 class="mt-2 mb-2 font-jersey-10 text-text text-7xl">
 Original Description: 
 </h2>
 <p class="mt-2">

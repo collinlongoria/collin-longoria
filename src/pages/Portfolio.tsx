@@ -75,12 +75,7 @@ function Row({
     return (
         <section className="space-y-3">
             <div className="flex items-baseline justify-between pr-1">
-                <h2 className="font-garamond text-2xl">{title}</h2>
-                {href && (
-                    <Link to={href} className="font-garamond text-lg underline text-primary/50">
-                        View all →
-                    </Link>
-                )}
+                <h2 className="font-header text-text text-2xl">{title}</h2>
             </div>
 
             {/* Scroller */}
@@ -100,21 +95,22 @@ function Row({
                     <Link
                         key={it.slug + (it.category ?? '')}
                         to={buildHref(it)}
-                        className="snap-start shrink-0 w-80 rounded-2xl border border-primary-darker bg-primary3 shadow-sm hover:shadow-xl transition overflow-hidden"
+                        className="btn-jump snap-start shrink-0 w-80 rounded-2xl border-2 border-outline bg-primary shadow-md hover:shadow-xl transition overflow-hidden"
                     >
                         {it.coverImage && (
-                            <div className="aspect-video w-full overflow-hidden bg-primary-darker">
+                            <div className="aspect-video w-full overflow-hidden bg-primary">
                                 <img
                                     src={it.coverImage}
                                     alt={it.title}
                                     className="h-full w-full object-cover"
-                                    loading="lazy"
+                                    loading="eager"
                                 />
                             </div>
                         )}
                         <div className="p-5">
-                            <h3 className="font-garamond font-bold text-xl mb-1">{it.title}</h3>
-                            {it.summary && <p className="font-merriweather text-md text-primary line-clamp-3">{it.summary}</p>}
+                            <h3 className="font-header font-bold text-xl text-text mb-1">{it.title}</h3>
+                            <p className="font-header text-sm text-text italic">{it.group ? `${it.group}` : ""}</p>
+                            {it.summary && <p className="font-body text-md text-text2 line-clamp-3">{it.summary}</p>}
                             {it.tags?.length ? <TagPill tags={it.tags} className="mt-2" /> : null}
                         </div>
                     </Link>
@@ -123,14 +119,14 @@ function Row({
 
             {/* Bottom control bar (only shows when needed) */}
             {canScroll && (
-                <div className="flex items-center justify-end gap-2 pt-1">
+                <div className="flex items-center justify-end gap-2 pt-1 font-body text-text">
                     <button
                         type="button"
                         aria-label="Scroll left"
                         onClick={() => scrollBy(-360)}
                         disabled={atStart}
-                        className={`rounded-full border px-3 py-1.5 text-sm shadow-sm transition
-                        ${atStart ? 'opacity-40 cursor-default' : 'hover:bg-white bg-white border-gray-200'}`}
+                        className={`rounded-full border-2 px-3 py-1.5 text-sm shadow-sm transition
+                        ${atStart ? 'opacity-40 cursor-default' : 'btn-glow hover:bg-outline bg-primary border-outline'}`}
                     >
                         ‹ Prev
                     </button>
@@ -139,8 +135,8 @@ function Row({
                         aria-label="Scroll right"
                         onClick={() => scrollBy(360)}
                         disabled={atEnd}
-                        className={`rounded-full border px-3 py-1.5 text-sm shadow-sm transition
-                        ${atEnd ? 'opacity-40 cursor-default' : 'hover:bg-white bg-white border-gray-200'}`}
+                        className={`rounded-full border-2 px-3 py-1.5 text-sm shadow-sm transition
+                        ${atEnd ? 'opacity-40 cursor-default' : 'btn-glow hover:bg-outline bg-primary border-outline'}`}
                     >
                         Next ›
                     </button>
@@ -161,9 +157,9 @@ export default function Portfolio() {
         <div className="space-y-10">
 
                 <section className="space-y-4">
-                    <div className={"rounded-2xl border border-primary-darker p-2 bg-primary4 overflow-hidden overflow-hidden overflow-hidden shadow-sm "}>
-                        <h1 className="flex justify-center font-garamond text-3xl text-primary-darker">Portfolio</h1>
-                        <p className={"flex justify-center font-merriweather text-sm text-primary"}>
+                    <div className={"rounded-2xl border-2 border-outline p-2 bg-primary overflow-hidden shadow-sm "}>
+                        <h1 className="flex justify-center font-header text-3xl text-text">Portfolio</h1>
+                        <p className={"flex justify-center font-body text-sm text-text2"}>
                             All of my development projects, new and old.
                         </p>
                     </div>
@@ -176,15 +172,20 @@ export default function Portfolio() {
             {categories.map((cat) => {
                 const items = all.filter((i) => i.category === cat)
                 if (items.length === 0) return null
+                const meta = CATEGORY_META[cat];
                 return (
-                    <Row
-                        key={cat}
-                        title={cat}
-                        href={`/portfolio/${cat}`}
-                        items={items}
-                        buildHref={(it) => `/portfolio/${cat}/${it.slug}`}
-                    />
-                )
+                    <section key={cat} className="space-y-2">
+                        <h2 className="font-header text-text text-2xl">{meta.title}</h2>
+                        {meta.description && (
+                            <p className="font-body text-sm text-text2 mb-2">{meta.description}</p>
+                        )}
+                        <Row
+                            title=""
+                            items={items}
+                            buildHref={(it) => `/portfolio/${cat}/${it.slug}`}
+                        />
+                    </section>
+                );
             })}
         </div>
 

@@ -21,7 +21,7 @@ export default function ContentRenderer({ content }: { content: string }) {
         })
 
     return (
-        <article className="prose max-w-none">
+        <article className="prose max-w-none text-text font-body prose-headings:text-text prose-strong:text-text">
             <ReactMarkdown
                 remarkPlugins={[remarkGfm]}
                 rehypePlugins={[rehypeRaw]}

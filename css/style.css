@@ -3,19 +3,28 @@
 @plugin 'tailwind-scrollbar';
 
 @theme{
-    --color-primary: oklch(0.277 0 89.876);
-    --color-primary-darker: oklch(0.239 0 89.876);
-    --color-primary2: oklch(0.893 0.056 90.328);
-    --color-primary3: oklch(0.575 0.066 198.151);
-    --color-primary4: oklch(0.645 0.095 144.807);
-    --color-primary5: oklch(0.548 0.204 28.279);
-    --color-primary6: oklch(0.725 0.143 77.608);
+    --color-background: oklch(0.182 0 89.876);
+    --color-primary: oklch(0.239 0 89.876);
+    --color-outline: oklch(0.309 0 89.876);
+    --color-accent: oklch(0.645 0.24 27.311);
+    --color-text: oklch(0.886 0.014 67.646);
+    --color-text2: oklch(0.686 0 89.876);
 
     /* Serif fonts */
     --font-garamond: "EB Garamond", serif;
     --font-merriweather: "Merriweather", serif;
+    --font-header: "Electrolize", serif;
+    --font-body: "Sunflower", serif;
 
     /* Font fallback */
     --font-jersey-10: "Jersey 10", sans-serif;
     --font-sans: "Merriweather Sans", system-ui, sans-serif;
+}
+
+.btn-glow{
+    @apply transition-transform duration-200 hover:-translate-y-1 shadow-[0_0_8px_#ff2e2e80] transition-shadow hover:shadow-[0_0_12px_#ff2e2eff];
+}
+
+.btn-jump{
+    @apply transition-transform duration-200 hover:-translate-y-1 hover:shadow-[0_4px_10px_rgba(0,0,0,0.4)];
 }

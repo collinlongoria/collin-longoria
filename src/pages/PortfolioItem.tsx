@@ -12,16 +12,17 @@ export default function PortfolioItem({ forcedSlug }: Props) {
 
     if (!item) return <div>Item not found.</div>
 
-    const backHref = categoryKey ? `/portfolio/${categoryKey}` : `/portfolio`
-    const backLabel = categoryKey ?? 'Portfolio'
+    const backHref = '/portfolio'
+    const backLabel = 'Portfolio'
     window.scrollTo(0, 0);
 
     return (
         <article className="max-w-3xl mx-auto">
-            <Link to={backHref} className="text-sm underline text-gray-600">
+            <Link to={backHref} className="text-sm underline font-body text-text2">
                 ← Back to {backLabel}
             </Link>
-            <h1 className="font-garamond text-3xl mt-2 text-primary-darker">{item.title}</h1>
+            <h1 className="font-header text-3xl mt-2 text-text">{item.title}</h1>
+            <h3 className="font-header text-md mt-2 text-text2">{item.group}</h3>
             <TagPill tags={item.tags} className="mt-2" />
 
             <div className="mt-6">

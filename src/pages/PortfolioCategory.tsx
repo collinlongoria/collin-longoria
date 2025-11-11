@@ -38,24 +38,24 @@ export default function PortfolioCategory({ forcedKey }: Props) {
 
     return (
         <div className="space-y-8">
-            <Link to='/portfolio' className="text-sm underline text-gray-600">
+            <Link to='/portfolio' className="text-sm font-body underline text-text2">
                 ← Back to Portfolio
             </Link>
             <div>
-                <h1 className="font-garamond text-3xl mb-2">{meta.title}</h1>
-                {meta.description && <p className="text-gray-600">{meta.description}</p>}
+                <h1 className="font-header text-text text-3xl mb-2">{meta.title}</h1>
+                {meta.description && <p className="font-body text-text2">{meta.description}</p>}
             </div>
 
             {flat.length > 0 && (
                 <section>
-                    <h2 className="font-garamond text-xl mb-3">Ungrouped</h2>
+                    <h2 className="font-header text-xl text-text mb-3">Ungrouped</h2>
                     <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">{flat.map(renderCard)}</div>
                 </section>
             )}
 
             {Object.entries(groups).map(([groupName, arr]) => (
                 <section key={groupName}>
-                    <h2 className="font-garamond text-xl mb-3">{groupName}</h2>
+                    <h2 className="font-header text-text text-xl mb-3">{groupName}</h2>
                     <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">{arr.map(renderCard)}</div>
                 </section>
             ))}

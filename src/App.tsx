@@ -18,7 +18,7 @@ function App(){
         <div className={"min-h-screen flex flex-col"}>
             <Header />
             <NavBar />
-            <main className={"flex-1 bg-primary2"}>
+            <main className={"flex-1 bg-background"}>
                 <div className={"mx-auto max-w-screen-xl px-4 py-8"}>
                     <Routes>
                         <Route path={"/"} element={<Home />} />
