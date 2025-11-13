@@ -15,6 +15,7 @@
     --font-merriweather: "Merriweather", serif;
     --font-header: "Electrolize", serif;
     --font-body: "Sunflower", serif;
+    --font-code: "Source Code Pro", monospace;
 
     /* Font fallback */
     --font-jersey-10: "Jersey 10", sans-serif;

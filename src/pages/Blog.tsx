@@ -10,7 +10,7 @@ export default function Blog() {
         <Link
             key={p.slug}
             to={`/blog/${p.slug}`}
-            className="btn-jump rounded-2xl border-2 border-outline bg-white shadow-sm hover:shadow-md transition overflow-hidden"
+            className="btn-jump rounded-2xl border-2 border-outline bg-primary shadow-sm hover:shadow-md transition overflow-hidden"
         >
             {p.coverImage && (
                 <div className="aspect-[16/9] w-full bg-primary">
@@ -46,7 +46,7 @@ export default function Blog() {
             {latest && (
                 <Link
                     to={`/blog/${latest.slug}`}
-                    className="btn-jump block rounded-2xl border-2 border-outline bg-primary transition overflow-hidden"
+                    className="btn-jump block rounded-2xl border-2 border-outline bg-primary transition overflow-hidden max-w-md mx-auto"
                 >
                     {latest.coverImage && (
                         <div className="aspect-[16/9] w-full bg-primary4/40">
