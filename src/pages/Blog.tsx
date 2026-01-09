@@ -2,8 +2,11 @@ import { Link } from "react-router-dom";
 import { loadBlogIndex } from "../lib/content";
 import TagPill from "../components/TagPill"
 
+// Set this to true during development to see private posts in the index
+const SHOW_PRIVATE_POSTS = true;
+
 export default function Blog() {
-    const posts = loadBlogIndex();
+    const posts = loadBlogIndex(SHOW_PRIVATE_POSTS);
     const [latest, ...rest] = posts;
 
     const Card = (p: any) => (
@@ -23,12 +26,20 @@ export default function Blog() {
                 </div>
             )}
             <div className="p-5">
-                <div className="font-header text-xs text-text">
+                <div className="flex items-center gap-2 font-header text-xs text-text">
                     {p.date ? new Date(p.date).toLocaleDateString() : ""}
+                    <span className="text-text2">· {p.readingTime} min read</span>
                 </div>
                 <h3 className="font-header text-xl mt-1 text-text">{p.title}</h3>
                 {p.summary && <p className="font-body text-text2 mt-2 line-clamp-3">{p.summary}</p>}
-                <TagPill tags={p.tags} className="mt-3" />
+                <div className="flex flex-wrap items-center gap-2 mt-3">
+                    {p.private && (
+                        <span className="px-2 py-0.5 text-xs font-bold rounded bg-red-500 text-white uppercase tracking-wide">
+                            Private
+                        </span>
+                    )}
+                    <TagPill tags={p.tags} />
+                </div>
             </div>
         </Link>
     );
@@ -59,12 +70,20 @@ export default function Blog() {
                         </div>
                     )}
                     <div className="p-6">
-                        <div className="font-body text-xs text-text2">
+                        <div className="flex items-center gap-2 font-body text-xs text-text2">
                             {latest.date ? new Date(latest.date).toLocaleDateString() : ""}
+                            <span>· {latest.readingTime} min read</span>
                         </div>
                         <h2 className="font-header text-2xl mt-1 text-text">{latest.title}</h2>
                         {latest.summary && <p className="font-body text-text2 mt-2">{latest.summary}</p>}
-                        <TagPill tags={latest.tags} className="mt-3" />
+                        <div className="flex flex-wrap items-center gap-2 mt-3">
+                            {latest.private && (
+                                <span className="px-2 py-0.5 text-xs font-bold rounded bg-red-500 text-white uppercase tracking-wide">
+                                    Private
+                                </span>
+                            )}
+                            <TagPill tags={latest.tags} />
+                        </div>
                     </div>
                 </Link>
             )}
