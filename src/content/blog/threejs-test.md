@@ -1,6 +1,6 @@
 ---
 title: "Rendering Three.js Games in Markdown: My Blog Pipeline"
-date: 2025-11-13
+date: 2026-1-8
 summary: Here is how I render a three.js canvas in a markdown file.
 tags: [Tech, Javascript]
 coverImage: "/blog_misc/cube_render.png"
@@ -79,6 +79,8 @@ TL;DR It's a simple pipeline that scales well, is easy to add to, and stays clea
 # So, Do You See It?
 Below should be a spinning cube. This is a three.js canvas rendering in real time. If you cannot see it, then you probably
 have an outdated browser. As far as I am aware, the most up-to-date versions of Firefox and Chrome support WebGPU.
+
+<b>Update: Looks like webgpu is still unsupported by current mobile versions of these browsers.</b>
 
 I've been extremely pleased with how my blog pipeline has turned out, and I hope to be able to explore various real-time
 rendering techniques right here in the future. Thanks for reading!

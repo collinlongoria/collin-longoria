@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import * as THREE from "three/webgpu";
+import games from "../data/gameRegistry";
 
 type SceneFn = (opts: {
     scene: THREE.Scene;
@@ -16,14 +17,10 @@ export default function ThreeGame({ id }: { id: string }) {
         let active = true;
 
         async function load() {
-            try {
-                const mod = await import(
-                    /* @vite-ignore */ `../content/games/${id}.ts`
-                    );
-                if (active) setSceneFn(() => mod.default);
-            } catch (err) {
-                console.error("Could not load scene", id, err);
-            }
+            const loader = games[id];
+            if (!loader) throw new Error(`Unknown scene: ${id}`);
+            const mod = await loader();
+            if (active) setSceneFn(() => mod.default);
         }
 
         load();

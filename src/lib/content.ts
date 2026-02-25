@@ -6,7 +6,7 @@ export type FrontMatter = {
     summary?: string
     tags?: string[]
     coverImage?: string
-    private?: boolean  // New: marks post as private/draft
+    private?: boolean
     // Portfolio-only (ignored by blog):
     category?: string
     group?: string
@@ -16,7 +16,7 @@ export type FrontMatter = {
 export type LoadedDoc = FrontMatter & {
     slug: string
     content: string
-    readingTime: number  // New: estimated minutes to read
+    readingTime: number
 }
 
 export type PortfolioDoc = LoadedDoc & {
