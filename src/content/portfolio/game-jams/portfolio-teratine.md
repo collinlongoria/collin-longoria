@@ -33,4 +33,4 @@ Made for GBJAM 6
 
 <imagescroller data-images="/teratine/teratine_cover.png"></imagescroller>
 
-<linkbutton href="https://collin-longoria.itch.io/teratine">Check out the game on itch.io</linkbutton>
+<linkbutton href="https://collin-longoria.itch.io/teratine" data-icon="itch">Check out the game on itch.io</linkbutton>

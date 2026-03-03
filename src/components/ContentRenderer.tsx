@@ -2,11 +2,18 @@ import React, {JSX} from "react"
 import ReactMarkdown, { Components } from "react-markdown"
 import remarkGfm from "remark-gfm"
 import rehypeRaw from "rehype-raw"
-import { SiItchdotio } from "react-icons/si"
+import { SiItchdotio, SiGithub, SiSteam } from "react-icons/si"
+import { FiExternalLink } from "react-icons/fi";
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism'
 import ImageScroller from "./ImageScroller";
 import ThreeGame from "./ThreeGame";
+
+const iconMap: Record<string, React.ComponentType<{ size?: number; className?: string }>> = {
+    itch: SiItchdotio,
+    github: SiGithub,
+    steam: SiSteam,
+}
 
 export default function ContentRenderer({ content }: { content: string }) {
     const asBlock = (el: JSX.Element) => <div className="my-6 block w-full">{el}</div>
@@ -96,6 +103,9 @@ export default function ContentRenderer({ content }: { content: string }) {
                         linkbutton: (props: any) => {
                             const href = props.href
                             const children = props.children
+                            const iconKey = props["data-icon"]
+                            const Icon = iconMap[iconKey] ?? FiExternalLink
+
                             return (
                                 <a
                                     href={href}
@@ -104,7 +114,7 @@ export default function ContentRenderer({ content }: { content: string }) {
                                     aria-label={href}
                                     className="btn-glow flex items-center justify-center gap-2 px-3 py-2 rounded-md border-2 border-outline bg-primary hover:bg-outline text-text font-body"
                                 >
-                                    <SiItchdotio size={32} className="text-text" />
+                                    <Icon size={32} className="text-text" />
                                     <span>{children}</span>
                                 </a>
                             )

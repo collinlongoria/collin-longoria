@@ -29,3 +29,5 @@ Elementokens offers a deep, replayable experience full of strategic depth and ma
 <youtube data-id="RVY6Du1wHmo" data-title="Elementokens Trailer"></youtube>
 
 <imagescroller data-images="/elementokens/elementokens_1.png,/elementokens/elementokens_2.png,/elementokens/elementokens_3.png,/elementokens/elementokens_4.png,/elementokens/elementokens_5.png,/elementokens/elementokens_6.png,/elementokens/elementokens_7.png"></imagescroller>
+
+<linkbutton href="https://games.digipen.edu/games/elementokens">Download Now!</linkbutton>

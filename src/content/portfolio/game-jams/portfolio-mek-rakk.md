@@ -30,4 +30,4 @@ This is the story of the DOWNFALL of RealTek and the RISE of Mek and Rakk.
 </section>
 <imagescroller data-images="/mek_rakk/mek_rakk_1.png,/mek_rakk/mek_rakk_2.png,/mek_rakk/mek_rakk_3.png"></imagescroller>
 
-<linkbutton href="https://collin-longoria.itch.io/mekrakk">Check out the game on itch.io</linkbutton>
+<linkbutton href="https://collin-longoria.itch.io/mekrakk" data-icon="itch">Check out the game on itch.io</linkbutton>

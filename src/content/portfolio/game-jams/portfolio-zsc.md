@@ -21,4 +21,4 @@ Please Note: This game has no audio. It was a submission for a Game Jam and I ra
 </p>
 </section>
 
-<linkbutton href="https://collin-longoria.itch.io/zero-star-chef">Check out the game on itch.io</linkbutton>
+<linkbutton href="https://collin-longoria.itch.io/zero-star-chef" data-icon="itch">Check out the game on itch.io</linkbutton>

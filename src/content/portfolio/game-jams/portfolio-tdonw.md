@@ -37,4 +37,4 @@ And more...
 
 <imagescroller data-images="/tdonw/tdonw_1.png,/tdonw/tdonw_2.png,/tdonw/tdonw_3.png,/tdonw/tdonw_4.png"></imagescroller>
 
-<linkbutton href="https://collin-longoria.itch.io/the-death-of-norman-wolf">Check out the game on itch.io</linkbutton>
+<linkbutton href="https://collin-longoria.itch.io/the-death-of-norman-wolf" data-icon="itch">Check out the game on itch.io</linkbutton>

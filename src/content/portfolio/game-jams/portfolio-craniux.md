@@ -30,4 +30,4 @@ Craniux: Post-Mortem is a roguelike RPG centered around collecting loot as a dun
 
 <imagescroller data-images="/craniux/craniux_1.png,/craniux/craniux_2.png,/craniux/craniux_3.png,/craniux/craniux_4.png"></imagescroller>
 
-<linkbutton href="https://collin-longoria.itch.io/craniux-post-mortem">Check out the game on itch.io</linkbutton>
+<linkbutton data-icon="itch" href="https://collin-longoria.itch.io/craniux-post-mortem">Check out the game on itch.io</linkbutton>
