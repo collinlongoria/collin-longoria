@@ -231,3 +231,5 @@ feel free to copy-paste it and claim it as your own, however you see fit.
 Stay tuned for future parts of this blog. Have a good day and don't die.
 
 <linkbutton href="https://github.com/collinlongoria/curia-ecs" data-icon="github">All Source Code Here!</linkbutton>
+
+<linkbutton href="https://collinlongoria.com/blog/building-an-ecs-part-two">Blog Part Two</linkbutton>
