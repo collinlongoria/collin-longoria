@@ -18,6 +18,63 @@ const recommendations = [
 export default function Home() {
     return (
         <div className={"space-y-10"}>
+            <style>{`
+                @keyframes portfolio-shine {
+                    0% { transform: translateX(-150%) skewX(-20deg); }
+                    100% { transform: translateX(250%) skewX(-20deg); }
+                }
+                @keyframes portfolio-pulse {
+                    0%, 100% {
+                        box-shadow:
+                            0 0 20px color-mix(in oklch, var(--color-accent) 50%, transparent),
+                            0 0 40px color-mix(in oklch, var(--color-accent) 25%, transparent);
+                    }
+                    50% {
+                        box-shadow:
+                            0 0 32px color-mix(in oklch, var(--color-accent) 80%, transparent),
+                            0 0 64px color-mix(in oklch, var(--color-accent) 45%, transparent);
+                    }
+                }
+                .portfolio-cta {
+                    position: relative;
+                    overflow: hidden;
+                    animation: portfolio-pulse 2.5s ease-in-out infinite;
+                }
+                .portfolio-cta::before {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 60%;
+                    height: 100%;
+                    background: linear-gradient(
+                        90deg,
+                        transparent 0%,
+                        color-mix(in oklch, var(--color-accent) 20%, transparent) 20%,
+                        color-mix(in oklch, var(--color-accent) 75%, white) 50%,
+                        color-mix(in oklch, var(--color-accent) 20%, transparent) 80%,
+                        transparent 100%
+                    );
+                    mix-blend-mode: screen;
+                    animation: portfolio-shine 2.8s ease-in-out infinite;
+                    pointer-events: none;
+                }
+                .portfolio-cta:hover {
+                    transform: scale(1.03);
+                    transition: transform 0.2s ease;
+                }
+            `}</style>
+
+            <section className={"flex justify-center"}>
+                <a
+                    href={"/portfolio"}
+                    className={"portfolio-cta inline-flex items-center justify-center gap-3 px-8 py-4 rounded-2xl border-2 border-outline bg-primary text-text font-header text-xl md:text-2xl shadow-lg"}
+                    aria-label={"View my portfolio"}
+                >
+                    <span className={"relative z-10"}>Click HERE To View My Portfolio</span>
+                </a>
+            </section>
+
             <section className={"grid gap-6"}>
                 <div className={"rounded-2xl border-2 border-outline p-6 md:p-8 bg-primary shadow-sm"}>
                     <div className={"flex items-start gap-5 md:gap-8"}>
