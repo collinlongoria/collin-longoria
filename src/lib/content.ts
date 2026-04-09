@@ -11,6 +11,7 @@ export type FrontMatter = {
     category?: string
     group?: string
     links?: { label: string; href: string }[]
+    featured?: boolean
 }
 
 export type LoadedDoc = FrontMatter & {

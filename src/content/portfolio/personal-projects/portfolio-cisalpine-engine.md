@@ -6,6 +6,7 @@ tags: [C++, OpenGL, Engine]
 category: Personal Projects
 group: Software
 coverImage: "/cisalpine/screenshot_3.png"
+featured: true
 ---
 
 <img

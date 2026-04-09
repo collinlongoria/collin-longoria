@@ -6,6 +6,7 @@ tags: [C++, Engine]
 category: Personal Projects
 group: Library
 coverImage: "/curia/logo.png"
+featured: true
 ---
 
 <img

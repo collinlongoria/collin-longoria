@@ -6,6 +6,7 @@ tags: [C++, OpenGL, Game]
 category: School Projects
 group: Sophomore Project
 coverImage: "/elementokens/elementokens_thumbnail.png"
+featured: true
 ---
 
 <img
