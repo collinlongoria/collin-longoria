@@ -6,7 +6,8 @@ import { mkdtemp, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { Lexer, type Token, type Tokens } from 'marked';
-import { typstString } from './fountain.ts';
+import sharp from 'sharp';
+import { VIDEO_EXTENSIONS } from '../shared/schema.ts';
 
 const TYPST = process.env.TYPST_BIN || 'typst';
 const FONTS = path.resolve(import.meta.dirname, '../pdf-fonts');
@@ -20,11 +21,13 @@ export function hasTypst(): boolean {
   return typstInstalled;
 }
 
-export async function makePdf(typstSource: string, outputFile: string): Promise<void> {
+// `files` are written next to the source, so it can refer to them by name (e.g. the cover).
+export async function makePdf(typstSource: string, outputFile: string, files: CoverImage[] = []): Promise<void> {
   const workDir = await mkdtemp(path.join(tmpdir(), 'typst-'));
   try {
     const sourceFile = path.join(workDir, 'main.typ');
     await writeFile(sourceFile, typstSource);
+    for (const file of files) await writeFile(path.join(workDir, file.name), file.data);
 
     const result = spawnSync(TYPST, ['compile', '--font-path', FONTS, sourceFile, outputFile], {
       encoding: 'utf8',
@@ -35,6 +38,41 @@ export async function makePdf(typstSource: string, outputFile: string): Promise<
   } finally {
     await rm(workDir, { recursive: true, force: true });
   }
+}
+
+// Typst strings are the safest way to insert text: nothing inside them is treated as markup.
+export function typstString(text: string): string {
+  return '"' + text.replace(/\\/g, '\\\\').replace(/"/g, '\\"').replace(/\n/g, '\\n') + '"';
+}
+
+export interface CoverImage {
+  name: string;
+  data: Buffer;
+  pixelated: boolean;
+}
+
+// Typst can't read WebP, and a huge photo makes a huge PDF, so the cover is resized to
+// print size (300 dpi at 9") first. Pixel art stays a PNG and is scaled up without blurring.
+export async function coverImage(file: string): Promise<CoverImage | undefined> {
+  if (VIDEO_EXTENSIONS.includes(path.extname(file).toLowerCase())) return undefined;
+
+  if (/\.pixel\.[a-z]+$/i.test(file)) {
+    return { name: 'cover.png', data: await sharp(file).png().toBuffer(), pixelated: true };
+  }
+  const data = await sharp(file)
+    .rotate()
+    .resize({ height: 2700, withoutEnlargement: true })
+    .flatten({ background: '#ffffff' })
+    .jpeg({ quality: 88 })
+    .toBuffer();
+  return { name: 'cover.jpg', data, pixelated: false };
+}
+
+// A full-page cover with no margins. Covers that aren't the page's shape get white bars
+// instead of being cropped.
+export function coverPage(cover: CoverImage): string {
+  const scaling = cover.pixelated ? ', scaling: "pixelated"' : '';
+  return `#page(margin: 0pt, numbering: none, header: none)[#image(${typstString(cover.name)}, width: 100%, height: 100%, fit: "contain"${scaling})]`;
 }
 
 // Straight quotes look cheap in print; the web version keeps them as typed.
@@ -120,17 +158,18 @@ export interface ChapterText {
   markdown: string;
 }
 
-// A 6×9" book: title page, then each chapter starting on a new page.
-export function proseToTypst(title: string, author: string, chapters: ChapterText[]): string {
+// A 6×9" book: cover, title page, then each chapter starting on a new page.
+export function proseToTypst(title: string, author: string, chapters: ChapterText[], cover?: CoverImage): string {
   const lines = [
     `#set document(title: ${typstString(title)}, author: ${typstString(author)})`,
     `#set page(width: 6in, height: 9in, margin: (inside: 0.85in, outside: 0.7in, top: 0.8in, bottom: 0.9in))`,
     `#set text(font: "Libertinus Serif", size: 11pt, lang: "en", hyphenate: true)`,
-    `#set par(justify: true, first-line-indent: 1.2em, leading: 0.68em, spacing: 0.68em)`,
+    `#set par(justify: true, first-line-indent: (amount: 1.2em, all: true), leading: 0.68em, spacing: 1.1em)`,
     `#show heading.where(level: 1): set align(center)`,
     `#show heading.where(level: 1): set text(15pt, weight: "regular")`,
     `#show heading.where(level: 1): set block(above: 0pt, below: 0.5in)`,
     '',
+    cover ? coverPage(cover) : '',
     `#page(numbering: none)[`,
     `  #align(center + horizon)[#text(24pt)[${textToTypst(title)}] #v(1.2em) #text(12pt)[${textToTypst(author)}]]`,
     `  #counter(page).update(0)`,

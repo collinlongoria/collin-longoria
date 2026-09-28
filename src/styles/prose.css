@@ -130,9 +130,11 @@
   .prose-story {
     font-size: 18px;
     line-height: 1.75;
-    & p + p {
-      margin-top: 0;
+    & > p {
       text-indent: 1.5em;
+    }
+    & > p + p {
+      margin-top: 0.6em;
     }
     & hr {
       height: auto;

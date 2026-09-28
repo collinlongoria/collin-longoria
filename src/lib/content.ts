@@ -57,6 +57,8 @@ export interface Story {
   year?: number;
   pinned: boolean;
   cover?: Media;
+  // The original cover file, for the front of the PDF.
+  coverFile?: string;
   chapters: Chapter[];
   screenplay?: { script: Script; html: string };
   wordCount: number;
@@ -324,6 +326,7 @@ async function loadStories(options: LoadOptions): Promise<Story[]> {
     const fields = readFields(entry, sections.stories.fields);
     const { namedFile, resolve } = mediaHelpers(entry, options.media);
     const intro = await renderMarkdown(entry.body, resolve);
+    const coverName = findFile(entry, 'cover');
 
     const story: Story = {
       slug: entry.slug,
@@ -332,6 +335,7 @@ async function loadStories(options: LoadOptions): Promise<Story[]> {
       year: fields.year,
       pinned: fields.pinned,
       cover: await namedFile('cover'),
+      coverFile: coverName && path.join(entry.folder, coverName),
       chapters: [],
       wordCount: 0,
       excerpt: intro.excerpt,

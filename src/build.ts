@@ -15,7 +15,7 @@ import * as esbuild from 'esbuild';
 import { site } from './config.ts';
 import { loadContent, type SiteContent } from './lib/content.ts';
 import { MediaProcessor } from './lib/images.ts';
-import { hasTypst, makePdf, proseToTypst } from './lib/pdf.ts';
+import { coverImage, hasTypst, makePdf, proseToTypst } from './lib/pdf.ts';
 import { scriptToTypst } from './lib/fountain.ts';
 import { rssFeed, sitemap } from './lib/feeds.ts';
 import { HEAD_SCRIPT, type BuildContext } from './templates/layout.ts';
@@ -94,7 +94,7 @@ async function buildScripts(dev: boolean): Promise<string> {
 }
 
 // Bump this to force every PDF to be rebuilt (e.g. after changing the PDF layout).
-const PDF_VERSION = '3';
+const PDF_VERSION = '4';
 
 async function buildPdfs(content: SiteContent): Promise<void> {
   if (content.stories.length === 0) return;
@@ -106,17 +106,20 @@ async function buildPdfs(content: SiteContent): Promise<void> {
   await mkdir(path.join(CACHE, 'pdf'), { recursive: true });
 
   for (const story of content.stories) {
+    const cover = story.coverFile ? await coverImage(story.coverFile) : undefined;
     const source = story.screenplay
-      ? scriptToTypst(story.screenplay.script, story.title, site.author)
+      ? scriptToTypst(story.screenplay.script, story.title, site.author, cover)
       : proseToTypst(
           story.title,
           site.author,
           story.chapters.map((chapter) => ({ title: chapter.title, markdown: chapter.markdown })),
+          cover,
         );
 
-    // PDFs are slow to make, so reuse the last one if the text hasn't changed.
-    const cached = path.join(CACHE, 'pdf', `${shortHash(source + PDF_VERSION)}.pdf`);
-    if (!existsSync(cached)) await makePdf(source, cached);
+    // PDFs are slow to make, so reuse the last one if the text and cover haven't changed.
+    const key = source + PDF_VERSION + (story.cover?.url ?? '');
+    const cached = path.join(CACHE, 'pdf', `${shortHash(key)}.pdf`);
+    if (!existsSync(cached)) await makePdf(source, cached, cover ? [cover] : []);
 
     const output = path.join(DIST, 'stories', story.slug, `${story.slug}.pdf`);
     await mkdir(path.dirname(output), { recursive: true });

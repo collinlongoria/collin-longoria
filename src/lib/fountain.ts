@@ -3,6 +3,7 @@
 // text is a character and their dialogue, and so on. This handles the common parts.
 
 import { escapeHtml } from './html.ts';
+import { coverPage, typstString, type CoverImage } from './pdf.ts';
 
 export type ScriptElement =
   | { type: 'scene'; text: string }
@@ -196,11 +197,6 @@ export function scriptToHtml(script: Script): string {
   return `<div class="screenplay">\n${parts.join('\n')}\n</div>`;
 }
 
-// Typst strings are the safest way to insert text: nothing inside them is treated as markup.
-export function typstString(text: string): string {
-  return '"' + text.replace(/\\/g, '\\\\').replace(/"/g, '\\"').replace(/\n/g, '\\n') + '"';
-}
-
 function toTypst(text: string): string {
   return splitEmphasis(text)
     .map((span) => {
@@ -217,7 +213,12 @@ function toTypst(text: string): string {
 }
 
 // Standard US screenplay layout: Courier 12pt, 1.5" left margin, dialogue indented 1".
-export function scriptToTypst(script: Script, fallbackTitle: string, fallbackAuthor: string): string {
+export function scriptToTypst(
+  script: Script,
+  fallbackTitle: string,
+  fallbackAuthor: string,
+  cover?: CoverImage,
+): string {
   const title = script.titlePage['title'] ?? fallbackTitle;
   const author = script.titlePage['author'] ?? script.titlePage['authors'] ?? fallbackAuthor;
   const credit = script.titlePage['credit'] ?? 'Written by';
@@ -238,6 +239,7 @@ export function scriptToTypst(script: Script, fallbackTitle: string, fallbackAut
     `#let centered(body) = block(above: 1em, below: 1em, width: 100%, align(center, body))`,
     `#let lyric(body) = block(above: 0pt, below: 0pt, pad(left: 1in, emph(body)))`,
     '',
+    cover ? coverPage(cover) : '',
     `#page(margin: 1in)[`,
     `  #v(3in)`,
     `  #align(center)[#upper[#strong[${toTypst(title)}]] #v(1em) ${toTypst(credit)} #v(1em) ${toTypst(author)}]`,
