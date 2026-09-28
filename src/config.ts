@@ -26,8 +26,9 @@ export type NavKey = (typeof navigation)[number]['key'];
 // Icons in the footer of every page, in this order. Entries without a url are skipped.
 // Available icons are listed in src/templates/social-icons.ts.
 export const socialLinks: { label: string; icon: IconName; url: string }[] = [
-  { label: 'X', icon: 'x', url: '' },
-  { label: 'Threads', icon: 'threads', url: '' },
+  { label: 'X', icon: 'x', url: 'https://x.com/_CollinLongoria' },
+  { label: 'Threads', icon: 'threads', url: 'https://www.threads.com/@collin.longoria' },
   { label: 'GitHub', icon: 'github', url: 'https://github.com/collinlongoria' },
+  { label: 'LinkedIn', icon: 'linkedin', url: 'https://www.linkedin.com/in/collin-longoria/' },
   { label: 'itch.io', icon: 'itch', url: 'https://collin-longoria.itch.io' },
 ];
