@@ -1,0 +1,71 @@
+/* Screenplay layout on the web. The PDF layout lives in src/lib/fountain.ts. */
+@layer components {
+  .screenplay {
+    font-family: var(--font-script);
+    font-size: 16px;
+    line-height: 1.35;
+    max-width: 61ch;
+    & p {
+      margin: 0;
+    }
+    & .sp-scene {
+      margin-top: 2.2em;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+    & .sp-action {
+      margin-top: 1.1em;
+      white-space: pre-line;
+    }
+    & .sp-centered {
+      text-align: center;
+    }
+    & .sp-character {
+      margin-top: 1.1em;
+      padding-left: 37%;
+      text-transform: uppercase;
+    }
+    & .sp-parenthetical {
+      padding-left: 27%;
+      padding-right: 27%;
+    }
+    & .sp-dialogue {
+      padding-left: 17%;
+      padding-right: 17%;
+      white-space: pre-line;
+    }
+    & .sp-lyric {
+      padding-left: 17%;
+      font-style: italic;
+    }
+    & .sp-transition {
+      margin-top: 1.1em;
+      text-align: right;
+      text-transform: uppercase;
+    }
+    & .sp-break {
+      margin: 2.4em 0;
+      border: 0;
+      border-top: 1px dashed var(--color-line-strong);
+    }
+    & > :first-child {
+      margin-top: 0;
+    }
+  }
+  @media (max-width: 640px) {
+    .screenplay {
+      font-size: 14px;
+      & .sp-character {
+        padding-left: 25%;
+      }
+      & .sp-dialogue {
+        padding-left: 10%;
+        padding-right: 5%;
+      }
+      & .sp-parenthetical {
+        padding-left: 18%;
+        padding-right: 10%;
+      }
+    }
+  }
+}

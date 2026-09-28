@@ -1,0 +1,218 @@
+@layer components {
+  .font-pixel {
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    -webkit-font-smoothing: none;
+  }
+
+  .pixelated {
+    image-rendering: pixelated;
+  }
+
+  .page-title {
+    font-family: var(--font-pixel);
+    font-size: 24px;
+    line-height: 1.2;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+
+  .section-title {
+    font-family: var(--font-pixel);
+    font-size: 16px;
+    color: var(--color-fg-3);
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+
+  .meta {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--color-fg-3);
+  }
+
+  .tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 3px 7px;
+    border-radius: 3px;
+    background: var(--color-accent-deep);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    line-height: 1.2;
+    color: var(--color-accent-fg);
+  }
+
+  .button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 16px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.2;
+    white-space: nowrap;
+    cursor: pointer;
+    transition:
+      background-color 120ms,
+      border-color 120ms;
+  }
+
+  .button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  .button-primary {
+    background: var(--color-accent);
+    color: var(--color-fg);
+  }
+
+  .button-primary:hover:not(:disabled) {
+    background: var(--color-accent-hover);
+  }
+
+  .button-secondary {
+    border: 1px solid var(--color-line-strong);
+    color: var(--color-fg);
+  }
+
+  .button-secondary:hover:not(:disabled) {
+    border-color: var(--color-fg-3);
+  }
+
+  .button-small {
+    padding: 6px 12px;
+    font-size: 13px;
+  }
+
+  .chip {
+    padding: 6px 12px;
+    border: 1px solid var(--color-line-strong);
+    border-radius: 999px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    line-height: 1.2;
+    color: var(--color-fg-2);
+    cursor: pointer;
+  }
+
+  .chip:hover {
+    color: var(--color-fg);
+  }
+
+  .chip[aria-pressed='true'] {
+    background: var(--color-fg);
+    border-color: var(--color-fg);
+    color: var(--color-canvas);
+  }
+
+  .label {
+    display: block;
+    margin-bottom: 6px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--color-fg-3);
+  }
+
+  .input {
+    width: 100%;
+    padding: 11px 12px;
+    border: 1px solid var(--color-line-strong);
+    border-radius: 4px;
+    background: var(--color-raised);
+    font-size: 15px;
+    color: var(--color-fg);
+  }
+
+  .input::placeholder {
+    color: var(--color-fg-3);
+  }
+
+  .input:focus {
+    outline: none;
+    border-color: var(--color-accent-fg);
+  }
+
+  textarea.input {
+    min-height: 120px;
+    line-height: 1.5;
+    resize: vertical;
+  }
+
+  .link {
+    color: var(--color-accent-fg);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+  }
+
+  .link:hover {
+    color: var(--color-fg);
+  }
+
+  .divider-below {
+    border-bottom: 1px solid var(--color-line);
+  }
+
+  .panel {
+    border: 1px solid var(--color-line);
+    border-radius: 6px;
+    background: var(--color-raised);
+  }
+
+  /* Image box with a fixed shape. Shows an empty surface until there's an image. */
+  .frame {
+    overflow: hidden;
+    border: 1px solid var(--color-line);
+    border-radius: 4px;
+    background: var(--color-surface);
+    transition: border-color 150ms;
+  }
+
+  .frame img,
+  .frame video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 300ms;
+  }
+
+  .card:hover .frame {
+    border-color: var(--color-line-strong);
+  }
+
+  .card:hover .frame img {
+    transform: scale(1.02);
+  }
+
+  .card:hover .card-title {
+    color: var(--color-accent-fg);
+  }
+
+  .dialog {
+    margin: auto;
+    width: min(360px, calc(100vw - 32px));
+    padding: 20px;
+    border: 1px solid var(--color-line-strong);
+    border-radius: 6px;
+    background: var(--color-raised);
+    color: var(--color-fg);
+  }
+
+  .dialog::backdrop {
+    background: rgb(0 0 0 / 0.6);
+  }
+
+  .form-message {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--color-fg-3);
+  }
+
+  .form-message.is-error {
+    color: var(--color-accent-fg);
+  }
+}

@@ -1,0 +1,12 @@
+/* Tailwind only scans these folders for class names. */
+@import 'tailwindcss' source(none);
+@source "../templates";
+@source "../scripts";
+@source "../lib";
+
+@import './theme.css';
+@import './base.css';
+@import './layout.css';
+@import './components.css';
+@import './prose.css';
+@import './screenplay.css';

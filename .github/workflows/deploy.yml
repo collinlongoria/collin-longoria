@@ -2,24 +2,42 @@ name: Deploy to Hostinger
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
+  workflow_dispatch:
+
+# One deploy at a time; a newer push waits for the current upload to finish.
+concurrency:
+  group: deploy
+  cancel-in-progress: false
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         with:
-          node-version: '20'
+          node-version: '24'
+          cache: npm
+
+      - uses: typst-community/setup-typst@v5
+
+      # Resized images and PDFs are cached between runs so builds stay fast.
+      - uses: actions/cache@v6
+        with:
+          path: .cache
+          key: build-cache-${{ github.run_id }}
+          restore-keys: build-cache-
 
       - run: npm ci
+      - run: npm run check
       - run: npm run build
 
-      # Upload built files to Hostinger public_html
+      # Syncs dist/ to public_html: only changed files are uploaded, removed files are deleted.
+      # (The server-side site-config.php lives outside public_html and is never touched.)
       - name: Deploy via FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.6
+        uses: SamKirkland/FTP-Deploy-Action@v4.4.0
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
@@ -28,4 +46,3 @@ jobs:
           port: 21
           local-dir: ./dist/
           server-dir: ./
-          dangerous-clean-slate: true

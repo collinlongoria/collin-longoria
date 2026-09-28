@@ -1,0 +1,32 @@
+/*
+  Design tokens. Tailwind turns these into classes: --color-surface becomes
+  bg-surface, text-surface, border-surface; --font-pixel becomes font-pixel.
+  The default Tailwind colors and fonts are cleared so only these exist.
+*/
+@theme {
+  --color-*: initial;
+  --color-black: #000000;
+  --color-white: #ffffff;
+
+  --color-canvas: #0a0a0b;
+  --color-raised: #121214;
+  --color-surface: #18181b;
+  --color-placeholder: #26262b;
+  --color-line: #232327;
+  --color-line-strong: #3a3a40;
+
+  --color-fg: #ffffff;
+  --color-fg-2: #a3a3aa;
+  --color-fg-3: #707078;
+
+  --color-accent: #6e1a2b;
+  --color-accent-hover: #8a2236;
+  --color-accent-deep: #2e0b13;
+  --color-accent-fg: #d27a8c;
+
+  --font-*: initial;
+  --font-pixel: 'Silkscreen', ui-monospace, monospace;
+  --font-sans: 'Geist', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'Geist Mono', ui-monospace, monospace;
+  --font-script: 'Courier Prime', 'Courier New', monospace;
+}

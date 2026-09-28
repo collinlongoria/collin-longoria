@@ -1,0 +1,9 @@
+# The files in includes/ are only meant to be loaded by other PHP files, never opened directly.
+# The same goes for cron.php, the schema and the example config.
+Options -Indexes
+RedirectMatch 404 ^/api/includes/
+RedirectMatch 404 ^/api/(cron\.php|schema\.sql|config\.example\.php|config\.local\.php)$
+
+<IfModule mod_headers.c>
+  Header always set X-Robots-Tag "noindex"
+</IfModule>
