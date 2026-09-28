@@ -30,11 +30,17 @@ export const HEAD_SCRIPT =
   "if(localStorage.getItem('sidebar')==='collapsed')c.add('sidebar-collapsed');" +
   "if(/(^|; )signed_in=1/.test(document.cookie))c.add('logged-in')}catch(e){}";
 
-function logo(context: BuildContext, size = 40): SafeHtml {
-  if (context.hasPublicFile('images/logo.png')) {
-    return html`<img src="/images/logo.png" alt="" class="logo" width="${size}" height="${size}" />`;
+// The logo (public/images/logo.gif) is the wordmark, so there's no separate title next to it.
+// The collapsed sidebar is too narrow for it and shows initials instead, like the nav letters.
+function brand(context: BuildContext): SafeHtml {
+  const logo = ['logo.gif', 'logo.png', 'logo.svg'].find((name) => context.hasPublicFile(`images/${name}`));
+  if (!logo) {
+    return html`<span class="logo font-pixel" aria-hidden="true">C</span>
+      <span class="sidebar-label font-pixel">${site.name}</span>`;
   }
-  return html`<span class="logo font-pixel" style="width:${size}px;height:${size}px" aria-hidden="true">C</span>`;
+
+  return html`<img src="/images/${logo}" alt="${site.author}" class="wordmark sidebar-label" />
+    <span class="initials font-pixel" aria-hidden="true">CL</span>`;
 }
 
 function navIcon(context: BuildContext, key: string, label: string): SafeHtml {
@@ -54,10 +60,7 @@ function sidebar(context: BuildContext, activeNav?: NavKey): SafeHtml {
   return html`
     <aside id="sidebar" class="sidebar" aria-label="Site">
       <div class="sidebar-brand">
-        <a href="/" class="flex min-w-0 items-center gap-3" aria-label="Home">
-          ${logo(context)}
-          <span class="sidebar-label font-pixel">${site.name}</span>
-        </a>
+        <a href="/" class="flex min-w-0 items-center gap-3" aria-label="${site.author}">${brand(context)}</a>
         <button type="button" class="close-menu ml-auto text-xl text-fg-2" data-close-menu aria-label="Close menu">
           ×
         </button>
@@ -108,10 +111,7 @@ function sidebar(context: BuildContext, activeNav?: NavKey): SafeHtml {
 function topbar(context: BuildContext): SafeHtml {
   return html`
     <header class="topbar">
-      <a href="/" class="flex items-center gap-2.5">
-        ${logo(context, 32)}
-        <span class="font-pixel">${site.name}</span>
-      </a>
+      <a href="/" class="flex items-center gap-2.5" aria-label="${site.author}">${brand(context)}</a>
       <button type="button" class="menu-button" data-open-menu aria-label="Menu" aria-controls="sidebar">
         <span></span><span></span><span></span>
       </button>

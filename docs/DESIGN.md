@@ -41,7 +41,7 @@ Never use #6E1A2B as small text on black (fails contrast).
 - Radius: 4 (buttons, cards), 6 (panels), 999 (filter chips).
 
 ## Components
-- **Sidebar**: logo slot 40×40 + name (Silkscreen 16) → status box (dot + `Currently feeling [feeling]` from the latest thought, bg/surface) → nav (8 items) → spacer → collapse button (32×32, «/»). Collapsed = 64px icon rail: logo, status dot, icons, expand button.
+- **Sidebar**: wordmark logo (animated GIF, 184 wide; it is the title, no separate name) → status box (dot + `Currently feeling [feeling]` from the latest thought, bg/surface) → nav (8 items) → spacer → collapse button (32×32, «/»). Collapsed = 64px icon rail: "CL" in Silkscreen, status dot, icons, expand button.
 - **Nav item**: 16px icon slot + label, padding 10, radius 4. Active = burgundy fill, white label/icon.
 - **Section header**: Silkscreen 16 muted label + "all →" (Geist Mono 12) right-aligned.
 - **Game card**: capsule 460×215 ratio (340×159 in 3-col grid), title, `[status] · [year]`.
@@ -66,7 +66,7 @@ Never use #6E1A2B as small text on black (fails contrast).
 - **Footer** (every page): top border, `© <year> Collin Longoria` left, social icons right (Geist Mono 12, fg-3, hover fg).
 
 ## Mobile (to finish during build)
-- Top bar 56: logo 32, name, status dot, menu button. Menu opens a 300px drawer (same content as sidebar) over a scrim.
+- Top bar 56: wordmark 40 tall, status dot, menu button. Menu opens a 300px drawer (same content as sidebar) over a scrim.
 - Single column, 20px side padding. Grids collapse to 1 column (games) or horizontal scroll (stories).
 
 ## Behind the scenes

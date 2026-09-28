@@ -433,9 +433,9 @@ The post, in markdown. Images are just ![](shot.png) with the file in the same f
   used as-is. **Pixel art:** put `.pixel.` in the name (`cover.pixel.png`) so it's never resized
   or smoothed.
 
-Your own assets go in `public/`: `images/logo.png` (the sidebar logo), `images/icons/<page>.png`
-for the nav icons (16×16; names: about games stories blog devlogs thoughts guestbook contact),
-and `favicon.ico`.
+Your own assets go in `public/`: `images/logo.gif` (the wordmark at the top of the sidebar; a
+`.png` or `.svg` works too), `images/icons/<page>.png` for the nav icons (16×16; names: about games stories blog devlogs
+thoughts guestbook contact), and `favicon.ico` + `apple-touch-icon.png` (180×180, for phones).
 
 ## 12. Deploying
 

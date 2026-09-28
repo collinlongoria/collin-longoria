@@ -139,6 +139,23 @@ html:not(.logged-in) .admin-only,
   image-rendering: pixelated;
 }
 
+.wordmark {
+  width: 184px;
+  height: auto;
+}
+
+.topbar .wordmark {
+  width: auto;
+  height: 40px;
+}
+
+.initials {
+  display: none;
+  width: 40px;
+  text-align: center;
+  line-height: 40px;
+}
+
 .status {
   display: flex;
   align-items: center;
@@ -271,6 +288,10 @@ html:not(.logged-in) .admin-only,
 
   .sidebar-collapsed .sidebar-label {
     display: none;
+  }
+
+  .sidebar-collapsed .initials {
+    display: block;
   }
 
   .sidebar-collapsed .nav-letter {
