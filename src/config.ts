@@ -7,7 +7,7 @@ export const site = {
   language: 'en',
 
   // Public Turnstile key. Leave empty to turn the captcha off (it's always off locally).
-  turnstileSiteKey: '',
+  turnstileSiteKey: '0x4AAAAAAFF3Q5XOfxL8WzG5',
 };
 
 export const navigation = [
